@@ -22,12 +22,12 @@ public class DiffTool extends JFrame {
 		// initialize panels
 		usagePanel = new UsagePanel();
 		compPanel = new ComparisonPanel();
-		resPanel = new ResultPanel();
+		//resPanel = new ResultPanel();
 		
 		// add the panels to the content pane
 		add(usagePanel, BorderLayout.NORTH);
 		add(compPanel, BorderLayout.CENTER);	
-		add(resPanel, BorderLayout.SOUTH);
+		//add(resPanel, BorderLayout.SOUTH);
 		
 		// set frame properties
 		setTitle("JSON Diff Tool");
