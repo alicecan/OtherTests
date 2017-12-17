@@ -194,10 +194,6 @@ public class ComparisonPanel extends JPanel {
 				
 				
 				if (p1.response.docs[i].multimedia != null && p2.response.docs[i].multimedia != null) {
-					if ((p1.response.docs[i].multimedia.length == p2.response.docs[i].multimedia.length)
-						&& p1.response.docs[i].multimedia.length == 0)
-						same.append("multimedia, ");
-					
 					for (int j=0; j<p1.response.docs[i].multimedia.length; j++) {
 						Multimedia m1 = p1.response.docs[i].multimedia[j];
 						Multimedia m2 = p2.response.docs[i].multimedia[j];
