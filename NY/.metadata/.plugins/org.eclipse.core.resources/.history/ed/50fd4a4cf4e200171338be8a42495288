@@ -59,10 +59,7 @@ public class ComparisonPanel extends JPanel {
 				sb.append("\tsnippet: " + p.response.docs[i].snippet + "\n");
 				sb.append("\tlead_paragraph: " + p.response.docs[i].lead_paragraph + "\n");
 				sb.append("\tprint_page: " + p.response.docs[i].print_page + "\n");
-				if (p.response.docs[i].blog != null && p.response.docs[i].blog.length != 0) {
-				} else {
-					sb.append("\tblog: []\n");
-				}
+				sb.append("\tblog: " + p.response.docs[i].blog + "\n");
 				sb.append("\tsource: " + p.response.docs[i].source + "\n");
 				if (p.response.docs[i].multimedia != null) {
 					sb.append("\tmultimedia:\n");
@@ -102,20 +99,7 @@ public class ComparisonPanel extends JPanel {
 				sb.append("\tnews_desk: " + p.response.docs[i].news_desk + "\n");
 				sb.append("\tsection_name: " + p.response.docs[i].section_name + "\n");
 				sb.append("\tsubsection_name: " + p.response.docs[i].subsection_name + "\n");
-				if (p.response.docs[i].byline != null) {
-					sb.append("\tbyline:\n");
-					if (p.response.docs[i].byline.person != null && p.response.docs[i].byline.person.length != 0) {
-						for (Person per : p.response.docs[i].byline.person) {
-							sb.append("\t\torganization: " + per.organization + "\n");
-							sb.append("\t\trole: " + per.role + "\n");
-							sb.append("\t\tfirstname: " + per.firstname + "\n");
-							sb.append("\t\trank: " + per.rank + "\n");
-							sb.append("\t\tlastname: " + per.lastname + "\n\n");
-						}
-					}
-					sb.append("\toriginal: " + p.response.docs[i].byline.original + "\n");
-					sb.append("\torganization: " + p.response.docs[i].byline.organization + "\n");
-				}
+				sb.append("\tbyline: " + p.response.docs[i].byline + "\n");
 				sb.append("\ttype_of_material: " + p.response.docs[i].type_of_material + "\n");
 				sb.append("\t_id: " + p.response.docs[i]._id + "\n");
 				sb.append("\tword_count: " + p.response.docs[i].word_count + "\n");

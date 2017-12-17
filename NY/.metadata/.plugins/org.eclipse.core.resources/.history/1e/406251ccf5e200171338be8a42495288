@@ -104,17 +104,7 @@ public class ComparisonPanel extends JPanel {
 				sb.append("\tsubsection_name: " + p.response.docs[i].subsection_name + "\n");
 				if (p.response.docs[i].byline != null) {
 					sb.append("\tbyline:\n");
-					if (p.response.docs[i].byline.person != null && p.response.docs[i].byline.person.length != 0) {
-						for (Person per : p.response.docs[i].byline.person) {
-							sb.append("\t\torganization: " + per.organization + "\n");
-							sb.append("\t\trole: " + per.role + "\n");
-							sb.append("\t\tfirstname: " + per.firstname + "\n");
-							sb.append("\t\trank: " + per.rank + "\n");
-							sb.append("\t\tlastname: " + per.lastname + "\n\n");
-						}
-					}
-					sb.append("\toriginal: " + p.response.docs[i].byline.original + "\n");
-					sb.append("\torganization: " + p.response.docs[i].byline.organization + "\n");
+					sb.append(+ p.response.docs[i].byline + "\n");
 				}
 				sb.append("\ttype_of_material: " + p.response.docs[i].type_of_material + "\n");
 				sb.append("\t_id: " + p.response.docs[i]._id + "\n");

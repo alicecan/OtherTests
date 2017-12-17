@@ -3,16 +3,8 @@ class Headline {
 	String print_headline;
 }
 
-class Person {
-	String organization;
-	String role;
-	String firstname;
-	int rank;
-	String lastname;
-}
-
 class Byline {
-	Person[] person;
+	String[] person;
 	String original;
 	String organization;
 }

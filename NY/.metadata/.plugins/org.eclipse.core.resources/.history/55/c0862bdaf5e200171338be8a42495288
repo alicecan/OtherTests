@@ -108,9 +108,9 @@ public class ComparisonPanel extends JPanel {
 						for (Person per : p.response.docs[i].byline.person) {
 							sb.append("\t\torganization: " + per.organization + "\n");
 							sb.append("\t\trole: " + per.role + "\n");
-							sb.append("\t\tfirstname: " + per.firstname + "\n");
+							sb.append("\t\tpfirstname: " + per.firstname + "\n");
 							sb.append("\t\trank: " + per.rank + "\n");
-							sb.append("\t\tlastname: " + per.lastname + "\n\n");
+							sb.append("\t\tplastname: " + per.lastname + "\n\n");
 						}
 					}
 					sb.append("\toriginal: " + p.response.docs[i].byline.original + "\n");
