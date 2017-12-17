@@ -21,23 +21,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ComparisonPanel extends JPanel {
-	private static JList leftList;
-	private static JList rightList;
 	private JScrollPane file1;
 	private JScrollPane file2;
 	private static JTextArea leftArea;
 	private static JTextArea rightArea;
 	
 	public ComparisonPanel() {
-		//String[] data = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten" };
-		String[] data = {"file will be shown here"};
-		
-		//leftList = new JList(data);
 		leftArea = new JTextArea(40,100);
 		file1 = new JScrollPane(leftArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-		//rightList = new JList(data);
 		rightArea = new JTextArea(40,100);
 		file2 = new JScrollPane(rightArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -69,6 +62,23 @@ public class ComparisonPanel extends JPanel {
         		sb.append("\tweb_url:" + p.response.docs[i].web_url + "\n");
         		sb.append("\tsnippet: " + p.response.docs[i].snippet + "\n");
         		sb.append("\tlead_paragraph: " + p.response.docs[i].lead_paragraph + "\n");
+        		sb.append("\tprint_page: " + p.response.docs[i].print_page + "\n");
+        		sb.append("\tblog: " + p.response.docs[i].blog + "\n");
+        		sb.append("\tsource: " + p.response.docs[i].source + "\n");
+        		sb.append("\tmultimedia: " + p.response.docs[i].multimedia + "\n");
+        		sb.append("\theadline: " + p.response.docs[i].headline + "\n");
+        		sb.append("\tkeywords: " + p.response.docs[i].keywords + "\n");
+        		sb.append("\tpub_date: " + p.response.docs[i].pub_date + "\n");
+        		sb.append("\tdocument_type: " + p.response.docs[i].document_type + "\n");
+        		sb.append("\tnews_desk: " + p.response.docs[i].news_desk + "\n");
+        		sb.append("\tsection_name: " + p.response.docs[i].section_name + "\n");
+        		sb.append("\tsubsection_name: " + p.response.docs[i].subsection_name + "\n");
+        		sb.append("\tbyline: " + p.response.docs[i].byline + "\n");
+        		sb.append("\ttype_of_material: " + p.response.docs[i].type_of_material + "\n");
+        		sb.append("\t_id: " + p.response.docs[i]._id + "\n");
+        		sb.append("\tword_count: " + p.response.docs[i].word_count + "\n");
+        		sb.append("\tslideshow_credits: " + p.response.docs[i].slideshow_credits + "\n");
+        		sb.append("\tscore: " + p.response.docs[i].score + "\n");
         	}
         }
         
