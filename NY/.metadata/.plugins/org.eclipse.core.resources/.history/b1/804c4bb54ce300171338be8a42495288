@@ -135,9 +135,6 @@ public class ComparisonPanel extends JPanel {
 
 		leftArea.setText(leftData);
 		rightArea.setText(rightData);
-		
-		leftPane.getViewport().setViewPosition(new Point(0,0));
-		rightPane.getViewport().setViewPosition(new Point(0,0));
 
 		String diffData = findDiff(filename1, filename2);
 		ResultPanel.display(diffData);

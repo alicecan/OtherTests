@@ -1,5 +1,4 @@
 import java.awt.GridLayout;
-import java.awt.Point;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,12 +24,10 @@ public class ComparisonPanel extends JPanel {
 		leftArea = new JTextArea(40, 100);
 		leftPane = new JScrollPane(leftArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		leftPane.getViewport().setViewPosition(new Point(0, 0));
-		
+
 		rightArea = new JTextArea(40, 100);
 		rightPane = new JScrollPane(rightArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		rightPane.getViewport().setViewPosition(new Point(0, 0));
 
 		setBorder(BorderFactory.createTitledBorder("Files"));
 
@@ -135,9 +132,6 @@ public class ComparisonPanel extends JPanel {
 
 		leftArea.setText(leftData);
 		rightArea.setText(rightData);
-		
-		leftPane.getViewport().setViewPosition(new Point(0,0));
-		rightPane.getViewport().setViewPosition(new Point(0,0));
 
 		String diffData = findDiff(filename1, filename2);
 		ResultPanel.display(diffData);
