@@ -13,7 +13,7 @@ public class ResultPanel extends JPanel {
 	private static JScrollPane scroll;
 
 	public ResultPanel() {
-		textArea = new JTextArea(10, 80);
+		textArea = new JTextArea(10, 100);
 		scroll = new JScrollPane (textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.getViewport().setViewPosition(new Point(0,0));

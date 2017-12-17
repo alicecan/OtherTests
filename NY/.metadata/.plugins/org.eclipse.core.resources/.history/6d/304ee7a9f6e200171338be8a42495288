@@ -133,5 +133,7 @@ public class ComparisonPanel extends JPanel {
 
 		leftArea.setText(leftData);
 		rightArea.setText(rightData);
+
+		// ResultPanel.display(sb.toString());
 	}
 }

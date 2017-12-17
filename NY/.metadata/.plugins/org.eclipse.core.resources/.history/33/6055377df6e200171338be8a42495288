@@ -27,12 +27,14 @@ public class UsagePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		String command = input.getText();
 		try {
 			ComparisonPanel.showFile("file1.json", "file2.json");
 		} catch (IOException e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		ResultPanel.display(command);
+		//ResultPanel.display(command);
 	}
 }
