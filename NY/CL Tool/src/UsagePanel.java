@@ -12,14 +12,14 @@ import javax.swing.JTextField;
 public class UsagePanel extends JPanel implements ActionListener {
 	public JLabel usage;
 	public JTextField input;
-	
+
 	public UsagePanel() {
 		usage = new JLabel("> Usage: diff file1 file2 (e.g. diff file1.json file2.json) : ");
 		input = new JTextField("");
 		input.addActionListener(this);
-		
+
 		setBorder(BorderFactory.createTitledBorder("Input"));
-		
+
 		setLayout(new GridLayout(1, 2));
 		add(usage);
 		add(input);
@@ -28,11 +28,18 @@ public class UsagePanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String command = input.getText();
+		String[] tokens = command.split(" "); 
 		try {
-			ComparisonPanel.showFile("file1.json", "file2.json");
+			if (tokens.length != 3 || !tokens[0].equals("diff")) {
+				ResultPanel.display("Please enter: \"diff file1.json file2.json\"");
+			} else {
+				ResultPanel.display("");
+				ComparisonPanel.showFile(tokens[1], tokens[2]);
+			}
 		} catch (IOException e1) {
-			e1.printStackTrace();
+			ResultPanel.display("Exception: " + e1.toString());
 		}
-		ResultPanel.display(command);
 	}
+	
+	
 }
