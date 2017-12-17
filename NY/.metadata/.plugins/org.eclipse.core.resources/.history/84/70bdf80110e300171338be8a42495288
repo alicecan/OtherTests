@@ -42,7 +42,6 @@ public class ComparisonPanel extends JPanel {
 		return s.hasNext() ? s.next() : "";
 	}
 
-	// shows file1 and file2 side by side for comparison
 	public static String convertJSON(String filename) throws FileNotFoundException {
 		FileInputStream in = new FileInputStream(new File(filename));
 		String data = convertStreamToString(in);
@@ -137,7 +136,6 @@ public class ComparisonPanel extends JPanel {
 		ResultPanel.display(diffData);
 	}
 
-	// find the differences of two files
 	private static String findDiff(String filename1, String filename2) throws FileNotFoundException {
 		// TODO Auto-generated method stub
 		FileInputStream in1 = new FileInputStream(new File(filename1));
