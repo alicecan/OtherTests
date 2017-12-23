@@ -17,11 +17,7 @@ EXAMPLES:
 ==============================
 src directory:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\src>dir
- Volume in drive C is Windows
- Volume Serial Number is 104B-F7DB
-
- Directory of C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\src
+C:\OtherTests\NY\CL Tool2\src>dir
 
 12/23/2017  12:03 AM    <DIR>          .
 12/23/2017  12:03 AM    <DIR>          ..
@@ -33,11 +29,7 @@ C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests
 ==============================
 output directory:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\output>dir
- Volume in drive C is Windows
- Volume Serial Number is 104B-F7DB
-
- Directory of C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\output
+C:\OtherTests\NY\CL Tool2\output>dir
 
 12/23/2017  12:10 AM    <DIR>          .
 12/23/2017  12:10 AM    <DIR>          ..
@@ -64,12 +56,12 @@ C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests
 ==============================
 COMPILE:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\src>javac -d ..\output -classpath ..\output -cp ..\output\gson-2.6.2.jar *.java	   
+C:\OtherTests\NY\CL Tool2\src>javac -d ..\output -classpath ..\output -cp ..\output\gson-2.6.2.jar *.java	   
 
 ==============================
 RUN 1:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file1.json file2.json
+C:\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file1.json file2.json
 doc[0]:
 DIFFERENT FIELDS: web_url, print_page, news_desk, _id
 
@@ -104,7 +96,7 @@ DIFFERENT FIELDS: web_url, multimedia[0]: width, multimedia[0]: url, multimedia[
 ==============================
 RUN 2:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file1.json file1.json
+C:\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file1.json file1.json
 doc[0]:
 SAME IN TWO FILES
 
@@ -139,13 +131,13 @@ SAME IN TWO FILES
 ==============================
 RUN 3:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file1.json file3.json
+C:\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file1.json file3.json
 file3.json is empty
 
 
 ==============================
 RUN 4:
 ==============================
-C:\Users\bingc\Me\MyCareer\Applications\NewYorkTimes\TakeHomeExercise\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file4.json file3.json
+C:\OtherTests\NY\CL Tool2\output>java -classpath .;gson-2.6.2.jar Compare file4.json file3.json
 file4.json is empty
 file3.json is empty

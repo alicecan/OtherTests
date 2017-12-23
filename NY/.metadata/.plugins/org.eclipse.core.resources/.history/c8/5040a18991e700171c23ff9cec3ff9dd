@@ -1,0 +1,329 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Scanner;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+public class Compare {
+	public static String convertStreamToString(InputStream is) {
+		// beginning of the input boundary
+		Scanner s = new Scanner(is).useDelimiter("\\A");
+		return s.hasNext() ? s.next() : "";
+	}
+
+	// find the differences of two files
+	private static String findDiff(String filename1, String filename2) throws FileNotFoundException {
+		// TODO Auto-generated method stub
+		FileInputStream in1 = new FileInputStream(new File(filename1));
+		String data1 = convertStreamToString(in1);
+		Gson gson1 = new GsonBuilder().create();
+		Mapper p1 = gson1.fromJson(data1, Mapper.class);
+
+		FileInputStream in2 = new FileInputStream(new File(filename2));
+		String data2 = convertStreamToString(in2);
+		Gson gson2 = new GsonBuilder().create();
+		Mapper p2 = gson1.fromJson(data2, Mapper.class);
+
+		StringBuilder sb = new StringBuilder();
+		StringBuilder same = new StringBuilder();
+		StringBuilder diff = new StringBuilder();
+
+		if (p1 != null && p2 != null) {
+			int docNum1 = p1.response.docs.length;
+			for (int i = 0; i < docNum1; i++) {
+				sb.append("doc[" + i + "]:\n");
+
+				if (p1.response.docs[i].web_url.equals(p2.response.docs[i].web_url)) {
+					same.append("web_url, ");
+				} else {
+					diff.append("web_url, ");
+				}
+
+				if (p1.response.docs[i].snippet.equals(p2.response.docs[i].snippet)) {
+					same.append("snippet, ");
+				} else {
+					diff.append("snippet, ");
+				}
+
+				if (p1.response.docs[i].lead_paragraph.equals(p2.response.docs[i].lead_paragraph)) {
+					same.append("lead_paragraph, ");
+				} else {
+					diff.append("lead_paragraph, ");
+				}
+
+				if (p1.response.docs[i].print_page != null
+						&& p1.response.docs[i].print_page.equals(p2.response.docs[i].print_page)) {
+					same.append("print_page, ");
+				} else {
+					diff.append("print_page, ");
+				}
+
+				same.append("blog, ");
+
+				if (p1.response.docs[i].source.equals(p2.response.docs[i].source)) {
+					same.append("source, ");
+				} else {
+					diff.append("source, ");
+				}
+
+				if (p1.response.docs[i].multimedia != null && p2.response.docs[i].multimedia != null) {
+					if ((p1.response.docs[i].multimedia.length == p2.response.docs[i].multimedia.length)
+							&& p1.response.docs[i].multimedia.length == 0)
+						same.append("multimedia, ");
+
+					for (int j = 0; j < p1.response.docs[i].multimedia.length; j++) {
+						Multimedia m1 = p1.response.docs[i].multimedia[j];
+						Multimedia m2 = p2.response.docs[i].multimedia[j];
+
+						if (m1.width == m2.width) {
+							same.append("multimedia[" + j + "]: width, ");
+						} else {
+							diff.append("multimedia[" + j + "]: width, ");
+						}
+
+						if (m1.url.equals(m2.url)) {
+							same.append("multimedia[" + j + "]: url, ");
+						} else {
+							diff.append("multimedia[" + j + "]: url, ");
+						}
+
+						if (m1.height == m2.height) {
+							same.append("multimedia[" + j + "]: height, ");
+						} else {
+							diff.append("multimedia[" + j + "]: height, ");
+						}
+
+						if (m1.subtype.equals(m2.subtype)) {
+							same.append("multimedia[" + j + "]: subtype, ");
+						} else {
+							diff.append("multimedia[" + j + "]: subtype, ");
+						}
+
+						if (m1.legacy != null && m2.legacy != null) {
+							Legacy l1 = m1.legacy;
+							Legacy l2 = m2.legacy;
+							if (m1.legacy.xlargewidth != null && m1.legacy.xlargewidth.equals(m2.legacy.xlargewidth))
+								same.append("multimedia[" + j + "]: legacy/xlargewidth, ");
+							else
+								diff.append("multimedia[" + j + "]: legacy/xlargewidth, ");
+
+							if (m1.legacy.xlarge != null && m1.legacy.xlarge.equals(m2.legacy.xlarge))
+								same.append("multimedia[" + j + "]: legacy/xlarge, ");
+							else
+								diff.append("multimedia[" + j + "]: legacy/xlarge, ");
+
+							if (m1.legacy.xlargeheight != null && m1.legacy.xlargeheight.equals(m2.legacy.xlargeheight))
+								same.append("multimedia[" + j + "]: legacy/xlargeheight, ");
+							else
+								diff.append("multimedia[" + j + "]: legacy/xlargeheight, ");
+						} else {
+							if (m1.legacy == null && m2.legacy == null) {
+								same.append("multimedia[" + j + "]: legacy, ");
+							} else {
+								diff.append("multimedia[" + j + "]: legacy, ");
+							}
+						}
+
+						if (m1.type.equals(m2.type)) {
+							same.append("multimedia[" + j + "]: type, ");
+						} else {
+							diff.append("multimedia[" + j + "]: type, ");
+						}
+					}
+				} else {
+					if (p1.response.docs[i].multimedia == null && p2.response.docs[i].multimedia == null)
+						same.append("multimedia, ");
+					else
+						diff.append("multimedia, ");
+				}
+
+				if (p1.response.docs[i].headline != null && p2.response.docs[i].headline != null) {
+					if (p1.response.docs[i].headline.main != null
+							&& p1.response.docs[i].headline.main.equals(p2.response.docs[i].headline.main))
+						same.append("headline/main, ");
+					else
+						diff.append("headline/main, ");
+
+					if (p1.response.docs[i].headline.print_headline != null
+							&& p1.response.docs[i].headline.print_headline
+									.equals(p2.response.docs[i].headline.print_headline))
+						same.append("headline/print_headline, ");
+					else
+						diff.append("headline/print_headline, ");
+				}
+				if (p1.response.docs[i].keywords != null && p2.response.docs[i].keywords != null
+						&& (p1.response.docs[i].keywords.length == p2.response.docs[i].keywords.length)) {
+					for (int j = 0; j < p1.response.docs[i].keywords.length; j++) {
+						Keyword k1 = p1.response.docs[i].keywords[j];
+						Keyword k2 = p2.response.docs[i].keywords[j];
+
+						if (k1.rank != null && k1.rank.equals(k2.rank))
+							same.append("keywords[" + j + "]: rank, ");
+						else
+							diff.append("keywords[" + j + "]: rank, ");
+
+						if (k1.is_major != null && k1.is_major.equals(k2.is_major))
+							same.append("keywords[" + j + "]: is_major, ");
+						else
+							diff.append("keywords[" + j + "]: is_major, ");
+
+						if (k1.name != null && k1.name.equals(k2.name))
+							same.append("keywords[" + j + "]: name, ");
+						else
+							diff.append("keywords[" + j + "]: name, ");
+
+						if (k1.value != null && k1.value.equals(k2.value))
+							same.append("keywords[" + j + "]: value, ");
+						else
+							diff.append("keywords[" + j + "]: value, ");
+					}
+				} else {
+					if (p1.response.docs[i].keywords == null && p2.response.docs[i].keywords == null)
+						same.append("keywords, ");
+					else
+						diff.append("keywords, ");
+				}
+
+				if (p1.response.docs[i].pub_date != null
+						&& p1.response.docs[i].pub_date.equals(p2.response.docs[i].pub_date)) {
+					same.append("pub_date, ");
+				} else {
+					diff.append("pub_date, ");
+				}
+
+				if (p1.response.docs[i].document_type != null
+						&& p1.response.docs[i].document_type.equals(p2.response.docs[i].document_type)) {
+					same.append("document_type, ");
+				} else {
+					diff.append("document_type, ");
+				}
+
+				if (p1.response.docs[i].print_page != null
+						&& p1.response.docs[i].print_page.equals(p2.response.docs[i].news_desk)) {
+					same.append("news_desk, ");
+				} else {
+					diff.append("news_desk, ");
+				}
+
+				if (p1.response.docs[i].section_name != null
+						&& p1.response.docs[i].section_name.equals(p2.response.docs[i].section_name)) {
+					same.append("section_name, ");
+				} else {
+					diff.append("section_name, ");
+				}
+
+				if (p1.response.docs[i].subsection_name != null
+						&& p1.response.docs[i].subsection_name.equals(p2.response.docs[i].subsection_name)) {
+					same.append("subsection_name, ");
+				} else {
+					diff.append("subsection_name, ");
+				}
+
+				if (p1.response.docs[i].byline != null) {
+					if (p1.response.docs[i].byline.person != null && p1.response.docs[i].byline.person.length != 0) {
+						for (int j = 0; j < p1.response.docs[i].byline.person.length; j++) {
+							Person per1 = p1.response.docs[i].byline.person[j];
+							Person per2 = p2.response.docs[i].byline.person[j];
+							if (per1.organization.equals(per2.organization)) {
+								same.append("byline.person[" + j + "]: organization, ");
+							} else {
+								diff.append("byline.person[" + j + "]: organization, ");
+							}
+							if (per1.role.equals(per2.role)) {
+								same.append("byline.person[" + j + "]: role, ");
+							} else {
+								diff.append("byline.person[" + j + "]: role, ");
+							}
+							if (per1.firstname.equals(per2.firstname)) {
+								same.append("byline.person[" + j + "]: firstname, ");
+							} else {
+								diff.append("byline.person[" + j + "]: firstname, ");
+							}
+							if (per1.rank == per2.rank) {
+								same.append("byline.person[" + j + "]: rank, ");
+							} else {
+								diff.append("byline.person[" + j + "]: rank, ");
+							}
+							if (per1.lastname.equals(per2.lastname)) {
+								same.append("byline.person[" + j + "]: lastname, ");
+							} else {
+								diff.append("byline.person[" + j + "]: lastname, ");
+							}
+						}
+					}
+				}
+
+				if (p1.response.docs[i].type_of_material.equals(p2.response.docs[i].type_of_material)) {
+					same.append("type_of_material, ");
+				} else {
+					diff.append("type_of_material, ");
+				}
+
+				if (p1.response.docs[i]._id.equals(p2.response.docs[i]._id)) {
+					same.append("_id, ");
+				} else {
+					diff.append("_id, ");
+				}
+
+				if (p1.response.docs[i].word_count.equals(p2.response.docs[i].word_count)) {
+					same.append("word_count, ");
+				} else {
+					diff.append("word_count, ");
+				}
+
+				if ((p1.response.docs[i].slideshow_credits != null)
+						&& p1.response.docs[i].slideshow_credits.equals(p2.response.docs[i].slideshow_credits)) {
+					same.append("slideshow_credits, ");
+				} else {
+					if ((p1.response.docs[i].slideshow_credits == null)
+							&& (p2.response.docs[i].slideshow_credits == null))
+						same.append("slideshow_credits, ");
+					else
+						diff.append("slideshow_credits, ");
+				}
+
+				if (p1.response.docs[i].score == p2.response.docs[i].score) {
+					same.append("score, ");
+				} else {
+					diff.append("score, ");
+				}
+
+				sb.append("Same fields: ");
+				String sameStr = same.toString().replaceAll(", $", "");
+				sb.append(sameStr);
+				sb.append("\nDifferent fields: ");
+				String diffStr = diff.toString().replaceAll(", $", "");
+				sb.append(diffStr + "\n\n");
+
+				// clear same/diff sb
+				same = new StringBuilder();
+				diff = new StringBuilder();
+			}
+
+		} else {
+			if (p1 == null)
+				sb.append("file1 is empty\n");
+			if (p2 == null)
+				sb.append("file2 is empty\n");
+		}
+
+		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+		try {
+			if (args.length != 3 || !args[0].equals("Compare")) {
+				System.out.println("Usage: Compare file1.json file2.json");
+			} else {
+				System.out.println("");
+				findDiff(args[1], args[2]);
+			}
+		} catch (IOException e1) {
+			System.out.println("Exception: " + e1.toString());
+		}
+	}
+}
